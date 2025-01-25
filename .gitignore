@@ -1,0 +1,10 @@
+
+/Debug
+LED1 Debug.launch
+LED1.ioc
+STM32F446RETX_FLASH.ld
+STM32F446RETX_RAM.ld
+.cproject
+.mxproject
+.project
+/.settings
