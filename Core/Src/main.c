@@ -44,7 +44,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint32_t TimerLED2;
+uint32_t TimerLED3;
+uint32_t TimerLED4;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -89,32 +91,28 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  TimerLED2 = HAL_GetTick();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-//	  HAL_Delay(500);
-//	  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-//	  HAL_Delay(500);
-
-	  if(GPIO_PIN_RESET == HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin))
+	  if((HAL_GetTick() - TimerLED2) > 500)
 	  {
-//		  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-//	  }
-//	  else
-//	  {
-//	  		  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-		  HAL_Delay(50);
-		  if(GPIO_PIN_RESET == HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin))
-		  {
-			  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-		  };
-
-	  };
+		  TimerLED2 = HAL_GetTick();
+		  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	  }
+	  if((HAL_GetTick() - TimerLED3) > 300)
+	  	  {
+	  		  TimerLED3 = HAL_GetTick();
+	  		  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+	  	  }
+	  if((HAL_GetTick() - TimerLED4) > 800)
+	  	  {
+	  		  TimerLED4 = HAL_GetTick();
+	  		  HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin);
+	  	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
